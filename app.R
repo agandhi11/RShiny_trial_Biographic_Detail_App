@@ -1,54 +1,512 @@
-library(shiny)
-library(bslib)
-
-# Define UI for app that draws a histogram ----
-ui <- page_sidebar(
-
-  # App title ----
-  title = "Hello Shiny!",
-
-  # Sidebar panel for inputs ----
-  sidebar = sidebar(
-
-    # Input: Slider for the number of bins ----
-    sliderInput(
-      inputId = "bins",
-      label = "Number of bins:",
-      min = 1,
-      max = 50,
-      value = 30
-    )
-  ),
-
-  # Output: Histogram ----
-  plotOutput(outputId = "distPlot")
-)
-
-# Define server logic required to draw a histogram ----
-server <- function(input, output) {
-
-  # Histogram of the Old Faithful Geyser Data ----
-  # with requested number of bins
-  # This expression that generates a histogram is wrapped in a call
-  # to renderPlot to indicate that:
-  #
-  # 1. It is "reactive" and therefore should be automatically
-  #    re-executed when inputs (input$bins) change
-  # 2. Its output type is a plot
-  output$distPlot <- renderPlot({
-    x <- faithful$waiting
-    bins <- seq(min(x), max(x), length.out = input$bins + 1)
-
-    hist(
-      x,
-      breaks = bins,
-      col = "#75AADB",
-      border = "white",
-      xlab = "Waiting time to next eruption (in mins)",
-      main = "Histogram of waiting times"
-    )
-  })
-}
-
-# Create Shiny app ----
+output$dynamicText  <- renderText({
+paste("Your age is: ",input$text1, " Your gender is: ", input$text2, sep = " " )
+})
+} # server
+# Create Shiny object
 shinyApp(ui = ui, server = server)
+ui <- fluidPage(theme = shinytheme("sandstone"),
+navbarPage(
+theme = "sandstone",  # <--- To use a theme, uncomment this
+"My first app",
+tabPanel("Navigantion_bar 1",
+sidebarPanel(
+tags$h3("Input:"),
+textInput("txt1", "Given Name:", ""),
+textInput("txt2", "Surname:", ""),
+), # sidebarPanel
+mainPanel(
+h1("Header 1"),
+h4("Output 1"),
+verbatimTextOutput("txtout"),
+) # mainPanel
+), # Navbar 1, tabPanel
+tabPanel("Navigation_bar 2",
+sidebarPanel(
+tags$h2("Input:"),
+textInput("text1","Age:",""),
+textInput("text2","Gender:",""),
+),#sidebarPanel
+mainPanel(
+h1("Biographic details"),
+h3("Your details"),
+uiOutput("dynamicText"),
+)
+), # Navbar 2, tabPanel2
+tabPanel("Navigation_bar 3",
+h1("Complete Details"),
+verbatimTextOutput("combinedText"),
+)
+)
+) # navbarPage
+) # fluidPage
+# Define UI (user interface)
+ui <- fluidPage(theme = shinytheme("sandstone"),
+navbarPage(
+theme = "sandstone",  # <--- To use a theme, uncomment this
+"My first app",
+tabPanel("Navigantion_bar 1",
+sidebarPanel(
+tags$h3("Input:"),
+textInput("txt1", "Given Name:", ""),
+textInput("txt2", "Surname:", ""),
+), # sidebarPanel
+mainPanel(
+h1("Header 1"),
+h4("Output 1"),
+verbatimTextOutput("txtout"),
+) # mainPanel
+), # Navbar 1, tabPanel
+tabPanel("Navigation_bar 2",
+sidebarPanel(
+tags$h2("Input:"),
+textInput("text1","Age:",""),
+textInput("text2","Gender:",""),
+),#sidebarPanel
+mainPanel(
+h1("Biographic details"),
+h3("Your details"),
+uiOutput("dynamicText"),
+)
+), # Navbar 2, tabPanel2
+tabPanel("Navigation_bar 3",
+h1("Complete Details"),
+verbatimTextOutput("combinedText")
+)
+)
+) # navbarPage
+) # fluidPage
+# Define UI (user interface)
+ui <- fluidPage(theme = shinytheme("sandstone"),
+navbarPage(
+theme = "sandstone",  # <--- To use a theme, uncomment this
+"My first app",
+tabPanel("Navigantion_bar 1",
+sidebarPanel(
+tags$h3("Input:"),
+textInput("txt1", "Given Name:", ""),
+textInput("txt2", "Surname:", "")
+), # sidebarPanel
+mainPanel(
+h1("Header 1"),
+h4("Output 1"),
+verbatimTextOutput("txtout")
+) # mainPanel
+), # Navbar 1, tabPanel
+tabPanel("Navigation_bar 2",
+sidebarPanel(
+tags$h2("Input:"),
+textInput("text1","Age:",""),
+textInput("text2","Gender:","")
+),#sidebarPanel
+mainPanel(
+h1("Biographic details"),
+h3("Your details"),
+uiOutput("dynamicText")
+)
+), # Navbar 2, tabPanel2
+tabPanel("Navigation_bar 3",
+h1("Complete Details"),
+verbatimTextOutput("combinedText")
+)
+),
+) # navbarPage
+) # fluidPage
+# Define UI (user interface)
+ui <- fluidPage(theme = shinytheme("sandstone"),
+navbarPage(
+theme = "sandstone",  # <--- To use a theme, uncomment this
+"My first app",
+tabPanel("Navigantion_bar 1",
+sidebarPanel(
+tags$h3("Input:"),
+textInput("txt1", "Given Name:", ""),
+textInput("txt2", "Surname:", ""),
+), # sidebarPanel
+mainPanel(
+h1("Header 1"),
+h4("Output 1"),
+verbatimTextOutput("txtout"),
+) # mainPanel
+), # Navbar 1, tabPanel
+tabPanel("Navigation_bar 2",
+sidebarPanel(
+tags$h2("Input:"),
+textInput("text1","Age:",""),
+textInput("text2","Gender:",""),
+),#sidebarPanel
+mainPanel(
+h1("Biographic details"),
+h3("Your details"),
+uiOutput("dynamicText"),
+)
+), # Navbar 2, tabPanel2
+tabPanel("Navigation_bar 3",
+h1("Complete Details"),
+verbatimTextOutput("combinedText"),
+)
+),
+) # navbarPage
+) # fluidPage
+# Define UI (user interface)
+ui <- fluidPage(theme = shinytheme("sandstone"),
+navbarPage(
+theme = "sandstone",  # <--- To use a theme, uncomment this
+"My first app",
+tabPanel("Navigantion_bar 1",
+sidebarPanel(
+tags$h3("Input:"),
+textInput("txt1", "Given Name:", ""),
+textInput("txt2", "Surname:", "")
+), # sidebarPanel
+mainPanel(
+h1("Header 1"),
+h4("Output 1"),
+verbatimTextOutput("txtout")
+) # mainPanel
+), # Navbar 1, tabPanel
+tabPanel("Navigation_bar 2",
+sidebarPanel(
+tags$h2("Input:"),
+textInput("text1","Age:",""),
+textInput("text2","Gender:","")
+),#sidebarPanel
+mainPanel(
+h1("Biographic details"),
+h3("Your details"),
+uiOutput("dynamicText")
+)
+), # Navbar 2, tabPanel2
+tabPanel("Navigation_bar 3",
+h1("Complete Details"),
+verbatimTextOutput("combinedText")
+)
+),
+) # navbarPage
+) # fluidPage
+# Define UI (user interface)
+ui <- fluidPage(theme = shinytheme("sandstone"),
+navbarPage(
+theme = "sandstone",  # <--- To use a theme, uncomment this
+"My first app",
+tabPanel("Navigantion_bar 1",
+sidebarPanel(
+tags$h3("Input:"),
+textInput("txt1", "Given Name:", ""),
+textInput("txt2", "Surname:", "")
+), # sidebarPanel
+mainPanel(
+h1("Header 1"),
+h4("Output 1"),
+verbatimTextOutput("txtout")
+) # mainPanel
+), # Navbar 1, tabPanel
+tabPanel("Navigation_bar 2",
+sidebarPanel(
+tags$h2("Input:"),
+textInput("text1","Age:",""),
+textInput("text2","Gender:","")
+),#sidebarPanel
+mainPanel(
+h1("Biographic details"),
+h3("Your details"),
+uiOutput("dynamicText")
+)
+), # Navbar 2, tabPanel2
+tabPanel("Navigation_bar 3",
+h1("Complete Details"),
+verbatimTextOutput("combinedText")
+)
+)
+) # navbarPage
+) # fluidPage
+ui <- fluidPage(
+theme = shinytheme("sandstone"),  # only set here
+navbarPage(
+"My first app",
+# Navbar 1
+tabPanel(
+"Navigation_bar 1",
+sidebarPanel(
+tags$h3("Input:"),
+textInput("txt1", "Given Name:", ""),
+textInput("txt2", "Surname:", "")
+),
+mainPanel(
+h1("Header 1"),
+h4("Output 1"),
+verbatimTextOutput("txtout")
+)
+),
+# Navbar 2
+tabPanel(
+"Navigation_bar 2",
+sidebarPanel(
+tags$h2("Input:"),
+textInput("text1","Age:",""),
+textInput("text2","Gender:","")
+),
+mainPanel(
+h1("Biographic details"),
+h3("Your details"),
+uiOutput("dynamicText")
+)
+),
+# Navbar 3
+tabPanel(
+"Navigation_bar 3",
+h1("Complete Details"),
+verbatimTextOutput("combinedText")
+)
+) # navbarPage
+) # fluidPage
+server <- function(input, output) {
+output$txtout <- renderText({
+paste(input$txt1, input$txt2, sep = " ")
+})
+output$dynamicText  <- renderText({
+paste("Your age is: ", input$text1, " Your gender is: ", input$text2, sep = " " )
+})
+output$combinedText <- renderText({
+paste("Given Name: ", input$txt1, "\n",
+"Last Name: ", input$txt2, "\n",
+"Age: ", input$text1, "\n",
+"Gender: ", input$text2)
+})
+}
+shinyApp(ui = ui, server = server)
+# Define UI (user interface)
+ui <- fluidPage(
+theme = shinytheme("sandstone"),  # only set here
+navbarPage(
+"My first app",
+# Navbar 1
+tabPanel(
+"Navigation_bar 1",
+sidebarPanel(
+tags$h3("Input:"),
+textInput("txt1", "Given Name:", ""),
+textInput("txt2", "Surname:", "")
+),
+mainPanel(
+h1("Header 1"),
+h4("Output 1"),
+verbatimTextOutput("txtout")
+)
+),
+# Navbar 2
+tabPanel(
+"Navigation_bar 2",
+sidebarPanel(
+tags$h2("Input:"),
+textInput("text1","Age:",""),
+textInput("text2","Gender:","")
+),
+mainPanel(
+h1("Biographic details"),
+h3("Your details"),
+uiOutput("dynamicText")
+)
+),
+# Navbar 3
+tabPanel(
+"Navigation_bar 3",
+h1("Complete Details"),
+verbatimTextOutput("combinedText")
+)
+) # navbarPage
+) # fluidPage
+server <- function(input, output) {
+output$txtout <- renderText({
+paste(input$txt1, input$txt2, sep = " ")
+})
+output$dynamicText  <- renderText({
+paste("Your age is: ", input$text1, " Your gender is: ", input$text2, sep = " " )
+})
+output$combinedText <- renderText({
+paste("Given Name: ", input$txt1, "\n",
+"Last Name: ", input$txt2, "\n",
+"Age: ", input$text1, "\n",
+"Gender: ", input$text2)
+})
+}
+shinyApp(ui = ui, server = server)
+#Define the UI
+ui <- fluidPage(
+theme = shinytheme("sandstone"),  # only set here
+navbarPage(
+"Trial App for Biographic Data Collection",
+# Navbar 1
+tabPanel(
+"Navigation_bar 1",
+sidebarPanel(
+tags$h3("Input:"),
+textInput("txt1", "Given Name:", ""),
+textInput("txt2", "Surname:", "")
+),
+mainPanel(
+h1("Header 1"),
+h4("Output 1"),
+verbatimTextOutput("txtout")
+)
+),
+# Navbar 2
+tabPanel(
+"Navigation_bar 2",
+sidebarPanel(
+tags$h2("Input:"),
+textInput("text1","Age:",""),
+textInput("text2","Gender:","")
+),
+mainPanel(
+h1("Biographic details"),
+h3("Your details"),
+uiOutput("dynamicText")
+)
+),
+# Navbar 3
+tabPanel(
+"Navigation_bar 3",
+h1("Complete Details"),
+verbatimTextOutput("combinedText")
+)
+) # navbarPage
+) # fluidPage
+#Define the server function
+server <- function(input, output) {
+output$txtout <- renderText({
+paste(input$txt1, input$txt2, sep = " ")
+})
+output$dynamicText  <- renderText({
+paste("Your age is: ", input$text1, " Your gender is: ", input$text2, sep = " " )
+})
+output$combinedText <- renderText({
+paste("Given Name: ", input$txt1, "\n",
+"Last Name: ", input$txt2, "\n",
+"Age: ", input$text1, "\n",
+"Gender: ", input$text2)
+})
+}
+#Create the Shiny object
+shinyApp(ui = ui, server = server)
+#Define the UI
+ui <- fluidPage(
+theme = shinytheme("sandstone"),  # only set here
+navbarPage(
+"Trial App for Biographic Data Collection",
+# Navbar 1
+tabPanel(
+"Navigation_bar 1",
+sidebarPanel(
+tags$h3("Input:"),
+textInput("txt1", "Given Name:", ""),
+textInput("txt2", "Surname:", "")
+),
+mainPanel(
+h1("Header 1"),
+h4("Output 1"),
+verbatimTextOutput("txtout")
+)
+),
+# Navbar 2
+tabPanel(
+"Navigation_bar 2",
+sidebarPanel(
+tags$h2("Input:"),
+textInput("text1","Age:",""),
+textInput("text2","Gender:","")
+),
+mainPanel(
+h1("Biographic details"),
+h3("Your details"),
+uiOutput("dynamicText")
+)
+),
+# Navbar 3
+tabPanel(
+"Navigation_bar 3",
+h1("Complete Details"),
+verbatimTextOutput("combinedText")
+)
+) # navbarPage
+) # fluidPage
+#Define the server function
+server <- function(input, output) {
+output$txtout <- renderText({
+paste(input$txt1, input$txt2, sep = " ")
+})
+output$dynamicText  <- renderText({
+paste("Your age is: ", input$text1, " Your gender is: ", input$text2, sep = " " )
+})
+output$combinedText <- renderText({
+paste(
+"Given Name: ", input$txt1, "\n",
+"Last Name: ", input$txt2, "\n",
+"Age: ", input$text1, "\n",
+"Gender: ", input$text2)
+})
+}
+#Create the Shiny object
+shinyApp(ui = ui, server = server)
+#Define the UI
+ui <- fluidPage(
+theme = shinytheme("sandstone"),  # only set here
+navbarPage(
+"Trial App for Biographic Data Collection",
+# Navbar 1
+tabPanel(
+"Navigation_bar 1",
+sidebarPanel(
+tags$h3("Input:"),
+textInput("txt1", "Given Name:", ""),
+textInput("txt2", "Surname:", "")
+),
+mainPanel(
+h1("Header 1"),
+h4("Output 1"),
+verbatimTextOutput("txtout")
+)
+),
+# Navbar 2
+tabPanel(
+"Navigation_bar 2",
+sidebarPanel(
+tags$h2("Input:"),
+textInput("text1","Age:",""),
+textInput("text2","Gender:","")
+),
+mainPanel(
+h1("Biographic details"),
+h3("Your details"),
+uiOutput("dynamicText")
+)
+),
+# Navbar 3
+tabPanel(
+"Navigation_bar 3",
+h1("Complete Details"),
+verbatimTextOutput("combinedText")
+)
+) # navbarPage
+) # fluidPage
+#Define the server function
+server <- function(input, output) {
+output$txtout <- renderText({
+paste(input$txt1, input$txt2, sep = " ")
+})
+output$dynamicText  <- renderText({
+paste("Your age is: ", input$text1, " Your gender is: ", input$text2, sep = " " )
+})
+output$combinedText <- renderText({
+paste(
+" Given Name: ", input$txt1, "\n",
+"Last Name: ", input$txt2, "\n",
+"Age: ", input$text1, "\n",
+"Gender: ", input$text2)
+})
+}
+#Create the Shiny object
+shinyApp(ui = ui, server = server)
+runApp('C:/Users/apurv/Desktop/Stevens Material/Rshiny/Building a Biographic Details data collection app.R')
+git init
+git
+install git
